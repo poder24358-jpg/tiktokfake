@@ -109,24 +109,34 @@
             </button>
         </form>
 
-        <div id="customAmountModal" class="custom-amount-modal hidden">
+        <div id="customAmountModal" class="custom-amount-modal hidden" role="dialog" aria-modal="true" aria-labelledby="customAmountTitle">
             <div class="custom-modal-card">
                 <div class="custom-modal-header">
-                    <h2>Custom</h2>
+                    <h2 id="customAmountTitle">Custom</h2>
                     <button id="closeCustomModalBtn" type="button" aria-label="Close custom amount">&times;</button>
                 </div>
-                <label for="customCoinsInput">Number of Coins</label>
+                <label for="customCoinsInput">Number of Coins <span class="custom-label-chevron">⌄</span></label>
                 <div class="custom-coins-input-wrap">
                     <span><img class="coin-icon" src="images/moneda2-v2.png" alt=""></span>
-                    <input id="customCoinsInput" type="number" min="1" step="1" placeholder="1">
+                    <input id="customCoinsInput" type="text" inputmode="none" placeholder="0" readonly>
                     <button id="allCoinsBtn" type="button">All</button>
                 </div>
-                <div class="custom-conversion">
-                    <span id="customDollarAmount">$0.01</span>
-                    <span>=</span>
-                    <span id="customCoinValue">$0.01</span>
+                <div class="custom-total">Total: <span id="customDollarAmount">$0.00</span></div>
+                <div class="custom-keypad" aria-label="Coin keypad">
+                    <button type="button" data-key="1">1</button>
+                    <button type="button" data-key="2">2</button>
+                    <button type="button" data-key="3">3</button>
+                    <button type="button" data-key="backspace" aria-label="Delete">⌫</button>
+                    <button type="button" data-key="4">4</button>
+                    <button type="button" data-key="5">5</button>
+                    <button type="button" data-key="6">6</button>
+                    <button type="button" data-key="000">000</button>
+                    <button type="button" data-key="7">7</button>
+                    <button type="button" data-key="8">8</button>
+                    <button type="button" data-key="9">9</button>
+                    <button type="button" data-key="0">0</button>
                 </div>
-                <button id="customExchangeBtn" type="button" class="custom-exchange-btn">Exchange</button>
+                <button id="customExchangeBtn" type="button" class="custom-exchange-btn">Confirm (<span id="customConfirmAmount">$0.00</span>)</button>
             </div>
         </div>
     </div>

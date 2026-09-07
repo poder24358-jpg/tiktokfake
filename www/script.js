@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const allCoinsBtn = document.getElementById('allCoinsBtn');
     const customExchangeBtn = document.getElementById('customExchangeBtn');
     const customDollarAmount = document.getElementById('customDollarAmount');
-    const customCoinValue = document.getElementById('customCoinValue');
+    const customConfirmAmount = document.getElementById('customConfirmAmount');
+    const customKeypad = document.querySelector('.custom-keypad');
     const transactionsList = document.getElementById('transactionsList');
     const availableRewardsAmount = document.getElementById('availableRewardsAmount');
     const availableRewardsSummary = document.getElementById('availableRewardsSummary');
@@ -28,8 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const initialRewards = 10952887618.40;
     const coinsPerDollar = 82.4;
+    const customCoinsPerDollar = 500;
     const storageKey = 'liveRewardsTransactions';
     let transactions = JSON.parse(localStorage.getItem(storageKey) || '[]');
+    let selectedCoinsPerDollar = coinsPerDollar;
 
     const formatMoney = (amount) => `$${amount.toLocaleString('en-US', {
         minimumFractionDigits: 2,
@@ -107,31 +110,42 @@ document.addEventListener('DOMContentLoaded', () => {
     coinOptions.forEach((option) => {
         option.addEventListener('click', () => {
             amountInput.value = option.dataset.coins;
+            selectedCoinsPerDollar = coinsPerDollar;
             coinOptions.forEach((item) => item.classList.remove('selected'));
             option.classList.add('selected');
         });
     });
 
     const updateCustomConversion = () => {
-        const coins = Number(customCoinsInput.value) || 0;
-        const dollars = coins / coinsPerDollar;
+        const coins = Number(customCoinsInput.value.replace(/,/g, '')) || 0;
+        const dollars = coins / customCoinsPerDollar;
         const formattedAmount = formatMoney(dollars);
         customDollarAmount.textContent = formattedAmount;
-        customCoinValue.textContent = formattedAmount;
+        customConfirmAmount.textContent = formattedAmount;
     };
 
     amountInput.addEventListener('click', () => {
         customAmountModal.classList.remove('hidden');
-        customCoinsInput.value = amountInput.value || '1';
+        customCoinsInput.value = Number(amountInput.value || 0).toLocaleString('en-US');
         updateCustomConversion();
-        customCoinsInput.focus();
     });
 
-    customCoinsInput.addEventListener('input', updateCustomConversion);
+    customKeypad.addEventListener('click', (event) => {
+        const key = event.target.dataset.key;
+        if (!key) {
+            return;
+        }
+
+        let coins = customCoinsInput.value.replace(/,/g, '');
+        coins = key === 'backspace' ? coins.slice(0, -1) : `${coins}${key}`;
+        const numericCoins = Number(coins) || 0;
+        customCoinsInput.value = numericCoins ? numericCoins.toLocaleString('en-US') : '';
+        updateCustomConversion();
+    });
 
     allCoinsBtn.addEventListener('click', () => {
         const spent = transactions.reduce((total, transaction) => total + transaction.amount, 0);
-        customCoinsInput.value = Math.floor((initialRewards - spent) * coinsPerDollar);
+        customCoinsInput.value = Math.floor((initialRewards - spent) * coinsPerDollar).toLocaleString('en-US');
         updateCustomConversion();
     });
 
@@ -139,8 +153,15 @@ document.addEventListener('DOMContentLoaded', () => {
         customAmountModal.classList.add('hidden');
     });
 
+    customAmountModal.addEventListener('click', (event) => {
+        if (event.target === customAmountModal) {
+            customAmountModal.classList.add('hidden');
+        }
+    });
+
     customExchangeBtn.addEventListener('click', () => {
-        amountInput.value = customCoinsInput.value;
+        amountInput.value = customCoinsInput.value.replace(/,/g, '');
+        selectedCoinsPerDollar = customCoinsPerDollar;
         customAmountModal.classList.add('hidden');
         exchangeForm.requestSubmit();
     });
@@ -162,13 +183,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if (coins > availableRewards * coinsPerDollar) {
+        if (coins > availableRewards * selectedCoinsPerDollar) {
             exchangeError.textContent = 'The amount is greater than your available rewards.';
             return;
         }
 
         const transaction = {
-            amount: coins / coinsPerDollar,
+            amount: coins / selectedCoinsPerDollar,
             coins: Math.round(coins),
             recipient: recipient.startsWith('@') ? recipient : `@${recipient}`,
             date: formatDate(new Date())

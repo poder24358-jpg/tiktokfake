@@ -356,8 +356,8 @@ body {
     display: flex;
     inset: 0;
     justify-content: center;
-    position: absolute;
-    z-index: 2;
+    position: fixed;
+    z-index: 200;
 }
 
 .custom-amount-modal.hidden {
@@ -366,9 +366,12 @@ body {
 
 .custom-modal-card {
     background: #ffffff;
-    border-radius: 16px 16px 0 0;
+    border-radius: 0;
+    height: 50vh;
     max-width: 480px;
-    padding: 18px 16px 24px;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 18px 16px 0;
     width: 100%;
 }
 
@@ -376,7 +379,7 @@ body {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
 }
 
 .custom-modal-header h2 {
@@ -402,36 +405,59 @@ body {
     color: #8a8b91;
     display: block;
     font-size: 12px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.custom-label-chevron {
+    color: #8a8b91;
+    font-size: 14px;
 }
 
 .custom-coins-input-wrap {
     align-items: center;
-    border-bottom: 1px solid #dedee3;
+    border: 1px solid #f1f1f2;
+    border-radius: 8px;
     display: flex;
     gap: 8px;
-    padding: 0 4px 10px;
+    padding: 9px 12px;
 }
 
 .custom-coins-input-wrap input {
     border: 0;
     color: #161823;
     flex: 1;
-    font-size: 18px;
+    font-size: 28px;
+    font-weight: 700;
     min-width: 0;
     outline: 0;
 }
 
 .custom-coins-input-wrap button {
-    font-size: 12px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
-.custom-conversion {
+.custom-total {
     color: #8a8b91;
-    display: flex;
-    font-size: 12px;
-    justify-content: space-between;
-    padding: 10px 0 22px;
+    font-size: 16px;
+    padding: 10px 0 26px;
+}
+
+.custom-keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 -16px;
+}
+
+.custom-keypad button {
+    background: #ffffff;
+    border: 0;
+    border-top: 1px solid #f8f8f8;
+    color: #161823;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: 600;
+    min-height: 76px;
 }
 
 .custom-exchange-btn {
@@ -442,6 +468,7 @@ body {
     cursor: pointer;
     font-size: 16px;
     font-weight: 700;
+    margin: 14px 0 16px;
     padding: 14px;
     width: 100%;
 }
@@ -513,6 +540,51 @@ body {
 }
 
 @media (max-width: 480px) {
+    .custom-modal-card {
+        overflow: hidden;
+        padding: 10px 12px 0;
+    }
+
+    .custom-modal-header {
+        margin-bottom: 8px;
+    }
+
+    .custom-modal-header h2 {
+        font-size: 15px;
+    }
+
+    .custom-modal-card label {
+        margin-bottom: 5px;
+    }
+
+    .custom-coins-input-wrap {
+        padding: 4px 8px;
+    }
+
+    .custom-coins-input-wrap input {
+        font-size: 22px;
+    }
+
+    .custom-total {
+        font-size: 13px;
+        padding: 5px 0 8px;
+    }
+
+    .custom-keypad {
+        margin: 0 -12px;
+    }
+
+    .custom-keypad button {
+        font-size: 20px;
+        min-height: 39px;
+    }
+
+    .custom-exchange-btn {
+        font-size: 14px;
+        margin: 6px 0 8px;
+        padding: 10px;
+    }
+
     .exchange-form {
         min-height: 100vh;
         padding: 24px 14px 20px;
