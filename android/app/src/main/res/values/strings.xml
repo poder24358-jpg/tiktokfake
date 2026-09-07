@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">LIVE Rewards</string>
+    <string name="title_activity_main">LIVE Rewards</string>
+    <string name="package_name">com.poder.tiktokfake</string>
+    <string name="custom_url_scheme">com.poder.tiktokfake</string>
+</resources>
