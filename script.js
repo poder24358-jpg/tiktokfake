@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         availableRewardsAmount.textContent = formattedRewards;
         availableRewardsSummary.textContent = formattedRewards;
         const availableCoins = (availableRewards * coinsPerDollar).toLocaleString('en-US', { maximumFractionDigits: 0 });
-        const balanceText = `= ${formattedRewards} (<img class="coin-icon" src="images/moneda2.png" alt=""> ${availableCoins})`;
+        const balanceText = `= ${formattedRewards} (<img class="coin-icon" src="images/moneda2-v2.png" alt=""> ${availableCoins})`;
         coinEquivalent.innerHTML = balanceText;
         exchangeBalanceAmount.textContent = formattedRewards;
         exchangeCoinBalance.innerHTML = balanceText;
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('receiptCoins').textContent = '10,000,000 Coins';
         document.getElementById('receiptAmount').textContent = '$121,000.00';
         document.getElementById('receiptTime').textContent = '06/09/2026, 20:05:44';
-        document.getElementById('successSummary').innerHTML = 'You exchanged for <img class="coin-icon" src="images/moneda2.png" alt=""> 10,000,000 Coins';
+        document.getElementById('successSummary').innerHTML = 'You exchanged for <img class="coin-icon" src="images/moneda2-v2.png" alt=""> 10,000,000 Coins';
     };
 
     renderBalance();
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('receiptCoins').textContent = `${transaction.coins.toLocaleString('en-US')} Coins`;
             document.getElementById('receiptAmount').textContent = formatMoney(transaction.amount);
             document.getElementById('receiptTime').textContent = transaction.date;
-            document.getElementById('successSummary').innerHTML = `You exchanged for <img class="coin-icon" src="images/moneda2.png" alt=""> ${transaction.coins.toLocaleString('en-US')} Coins`;
+            document.getElementById('successSummary').innerHTML = `You exchanged for <img class="coin-icon" src="images/moneda2-v2.png" alt=""> ${transaction.coins.toLocaleString('en-US')} Coins`;
             exchangeScreen.classList.add('hidden');
             successScreen.classList.remove('hidden');
             sendButton.disabled = false;
