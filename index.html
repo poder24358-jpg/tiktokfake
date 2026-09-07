@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVE rewards - TikTok</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container" id="mainAppScreen">
+        <header class="live-header">
+            <span class="back-arrow">&larr;</span>
+            <h1>LIVE rewards</h1>
+            <span class="settings-icon">&#9881;</span>
+        </header>
+
+        <div class="rewards-banner">
+            <div class="banner-title">Say hi to Scaled LIVE Rewards</div>
+            <div class="banner-desc">Your dedication to quality content could get you a rewards percentage of up to 53%.</div>
+            <a href="#" class="learn-more">Learn more</a>
+        </div>
+
+        <div class="balance-section">
+            <div class="balance-columns">
+                <div class="col">
+                    <span class="label">Available rewards</span>
+                    <span id="availableRewardsSummary" class="val">$9,953,024,045.62</span>
+                </div>
+                <div class="col">
+                    <span class="label">Upcoming rewards</span>
+                    <span class="val small-val">$167,290.62</span>
+                </div>
+            </div>
+
+            <div class="main-balance-display">
+                <span class="main-label">Available rewards</span>
+                <h2 id="availableRewardsAmount" class="main-amount">$9,953,024,045.62</h2>
+                <span id="coinEquivalent" class="coin-equiv">= $9,953,024,045.62 (🪙 820,112,417,864)</span>
+            </div>
+
+            <button id="openExchangeBtn" class="btn-exchange">Exchange</button>
+            <div class="withdraw-text">Withdraw</div>
+
+            <div class="limit-info">
+                Daily withdraw limit remaining total: $1,000/$1,000
+            </div>
+        </div>
+
+        <div class="transactions-section">
+            <div class="trans-header">
+                <h3>Transactions</h3>
+                <span class="date-filter">Jun 2026 &#9662;</span>
+            </div>
+
+            <div id="transactionsList"></div>
+        </div>
+    </div>
+
+    <div id="exchangeScreen" class="exchange-screen hidden">
+        <form id="exchangeForm" class="exchange-form">
+            <div class="exchange-form-header">
+                <button id="closeExchangeBtn" type="button" class="close-exchange" aria-label="Close">&times;</button>
+                <h2>TikTok LIVE Rewards</h2>
+                <span></span>
+            </div>
+
+            <div class="exchange-balance">
+                <strong id="exchangeBalanceAmount">$9,953,024,045.62</strong>
+                <span id="exchangeCoinBalance">= $9,953,024,045.62 (🪙 820,129,181,359)</span>
+                <small>Available balance to exchange the Coins</small>
+            </div>
+
+            <label for="usernameInput">TikTok username</label>
+            <div class="username-input-wrap">
+                <span>@</span>
+                <input id="usernameInput" name="username" type="text" placeholder="your TikTok handle" autocomplete="off" required>
+            </div>
+
+            <h3 class="exchange-earnings-title">Exchange earnings for Coins</h3>
+            <div class="coin-options" role="group" aria-label="Coin amounts">
+                <button type="button" class="coin-option" data-coins="500">
+                    <strong>🪙 500</strong>
+                    <span>$6.07</span>
+                </button>
+                <button type="button" class="coin-option" data-coins="250">
+                    <strong>🪙 250</strong>
+                    <span>$3.03</span>
+                </button>
+                <button type="button" class="coin-option" data-coins="15000">
+                    <strong>🪙 15,000</strong>
+                    <span>$182.04</span>
+                </button>
+            </div>
+
+            <label for="amountInput">Enter a custom number or amount</label>
+            <div class="amount-input-wrap">
+                <span>🪙</span>
+                <input id="amountInput" name="amount" type="number" min="1" step="1" placeholder="0" readonly required>
+            </div>
+            <p id="exchangeError" class="exchange-error" role="alert"></p>
+
+            <p class="exchange-policy">
+                Coins obtained through this exchange are subject to our Virtual Items Policy. Since you are accepting your Rewards from Coins, this exchange is also subject to our Rewards Policy. This exchange cannot be canceled or reversed.
+            </p>
+
+            <button id="sendButton" type="submit" class="confirm-exchange">
+                <span class="send-label">Exchange</span>
+                <span class="loading-spinner" aria-hidden="true"></span>
+            </button>
+        </form>
+
+        <div id="customAmountModal" class="custom-amount-modal hidden">
+            <div class="custom-modal-card">
+                <div class="custom-modal-header">
+                    <h2>Custom</h2>
+                    <button id="closeCustomModalBtn" type="button" aria-label="Close custom amount">&times;</button>
+                </div>
+                <label for="customCoinsInput">Number of Coins</label>
+                <div class="custom-coins-input-wrap">
+                    <span>🪙</span>
+                    <input id="customCoinsInput" type="number" min="1" step="1" placeholder="1">
+                    <button id="allCoinsBtn" type="button">All</button>
+                </div>
+                <div class="custom-conversion">
+                    <span id="customDollarAmount">$0.01</span>
+                    <span>=</span>
+                    <span id="customCoinValue">$0.01</span>
+                </div>
+                <button id="customExchangeBtn" type="button" class="custom-exchange-btn">Exchange</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="successScreen" class="success-screen hidden">
+        <div class="success-content">
+            <div class="success-check-icon">✓</div>
+            <h2>Exchange Completed!</h2>
+            <p id="successSummary" class="exchanged-for">You exchanged for 🪙 10,000,000 Coins</p>
+
+            <div class="receipt-box">
+                <div class="receipt-row">
+                    <span>Recipient</span>
+                    <span id="receiptRecipient" class="bold">@amrit_s._</span>
+                </div>
+                <div class="receipt-row">
+                    <span>Coins Exchanged</span>
+                    <span id="receiptCoins" class="bold">10,000,000 Coins</span>
+                </div>
+                <div class="receipt-row">
+                    <span>Deducted Amount</span>
+                    <span id="receiptAmount" class="bold">$121,000.00</span>
+                </div>
+                <div class="receipt-row">
+                    <span>Time</span>
+                    <span id="receiptTime" class="bold">06/09/2026, 20:05:44</span>
+                </div>
+            </div>
+
+            <div class="gifter-promo">
+                <img class="tiktok-badge" src="images/tiktok2.webp" alt="TikTok">
+                <div class="promo-text">
+                    <strong>Start gifter level</strong>
+                    <span>Send your first Gift to begin your gifter journey and unlock more rewards as you level up.</span>
+                </div>
+            </div>
+
+            <button id="goBackBtn" class="btn-goback">← Go back</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

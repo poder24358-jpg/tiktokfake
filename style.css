@@ -1,0 +1,724 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f8f8;
+    color: #161823;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* Header */
+.live-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.live-header h1 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.back-arrow, .settings-icon {
+    font-size: 20px;
+    cursor: pointer;
+    color: #161823;
+}
+
+/* Banner */
+.rewards-banner {
+    background: #fdf8f9;
+    border: 1px solid #ffd2d6;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.banner-title {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.banner-desc {
+    font-size: 11px;
+    color: #8a8b91;
+    line-height: 1.3;
+    margin-bottom: 6px;
+}
+
+.learn-more {
+    font-size: 11px;
+    color: #fe2c55;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Balance Section */
+.balance-section {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.balance-columns {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.balance-columns .col {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.balance-columns .label {
+    font-size: 11px;
+    color: #8a8b91;
+}
+
+.balance-columns .val {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+.main-balance-display {
+    margin-bottom: 16px;
+}
+
+.main-balance-display .main-label {
+    font-size: 12px;
+    color: #8a8b91;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.main-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #161823;
+    margin-bottom: 4px;
+}
+
+.coin-equiv {
+    font-size: 11px;
+    color: #8a8b91;
+}
+
+.btn-exchange {
+    width: 100%;
+    background: #fe2c55;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.withdraw-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #161823;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.limit-info {
+    font-size: 10px;
+    color: #8a8b91;
+}
+
+/* Exchange form */
+.exchange-screen {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.exchange-screen.hidden {
+    display: none;
+}
+
+.exchange-form {
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 24px 16px;
+    border-radius: 0;
+    box-shadow: none;
+    overflow-y: auto;
+}
+
+.exchange-form-header {
+    display: grid;
+    grid-template-columns: 32px 1fr 32px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.exchange-form-header h2 {
+    font-size: 16px;
+    text-align: center;
+}
+
+.exchange-balance {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 18px 0 28px;
+    text-align: center;
+}
+
+.exchange-balance strong {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.exchange-balance span,
+.exchange-balance small {
+    color: #8a8b91;
+    font-size: 11px;
+}
+
+.exchange-balance small {
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+.close-exchange {
+    border: 0;
+    background: transparent;
+    color: #161823;
+    cursor: pointer;
+    font-size: 28px;
+    line-height: 1;
+}
+
+.close-exchange:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.exchange-form label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+.username-input-wrap {
+    align-items: center;
+    border-bottom: 1px solid #dedee3;
+    display: flex;
+    margin-bottom: 24px;
+    padding: 0 12px;
+}
+
+.username-input-wrap > span {
+    color: #8a8b91;
+    font-size: 16px;
+}
+
+.username-input-wrap input {
+    border: 0;
+    color: #fe2c55;
+    padding-left: 8px;
+}
+
+.username-input-wrap input::placeholder {
+    color: #fe2c55;
+    opacity: 1;
+}
+
+.exchange-form input {
+    width: 100%;
+    border: 1px solid #dedee3;
+    border-radius: 8px;
+    color: #161823;
+    font-size: 16px;
+    outline: none;
+    padding: 13px 12px;
+}
+
+.exchange-form input:focus {
+    border-color: #fe2c55;
+}
+
+.exchange-form input[type="number"] {
+    border: 0;
+    padding-left: 4px;
+}
+
+.amount-input-wrap {
+    align-items: center;
+    border: 1px solid #dedee3;
+    border-radius: 8px;
+    display: flex;
+    font-size: 16px;
+    margin-bottom: 8px;
+    padding-left: 12px;
+}
+
+.exchange-earnings-title {
+    font-size: 13px;
+    margin: 0 0 12px;
+}
+
+.coin-options {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+    min-width: 0;
+}
+
+.coin-option {
+    background: #ffffff;
+    border: 1px solid #dedee3;
+    border-radius: 8px;
+    color: #161823;
+    cursor: pointer;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    font-size: 12px;
+    gap: 4px;
+    min-width: 0;
+    padding: 12px 8px;
+}
+
+.coin-option strong,
+.coin-option span {
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+.coin-option span {
+    color: #8a8b91;
+}
+
+.coin-option.selected,
+.coin-option:focus-visible {
+    border-color: #fe2c55;
+    outline: none;
+}
+
+.exchange-policy {
+    color: #8a8b91;
+    font-size: 10px;
+    line-height: 1.35;
+    margin: 16px 0 20px;
+    overflow-wrap: anywhere;
+}
+
+.custom-amount-modal {
+    align-items: flex-end;
+    background: rgba(22, 24, 35, 0.35);
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    position: absolute;
+    z-index: 2;
+}
+
+.custom-amount-modal.hidden {
+    display: none;
+}
+
+.custom-modal-card {
+    background: #ffffff;
+    border-radius: 16px 16px 0 0;
+    max-width: 480px;
+    padding: 18px 16px 24px;
+    width: 100%;
+}
+
+.custom-modal-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.custom-modal-header h2 {
+    flex: 1;
+    font-size: 16px;
+    text-align: center;
+}
+
+.custom-modal-header button,
+.custom-coins-input-wrap button {
+    background: transparent;
+    border: 0;
+    color: #8a8b91;
+    cursor: pointer;
+}
+
+.custom-modal-header button {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.custom-modal-card label {
+    color: #8a8b91;
+    display: block;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.custom-coins-input-wrap {
+    align-items: center;
+    border-bottom: 1px solid #dedee3;
+    display: flex;
+    gap: 8px;
+    padding: 0 4px 10px;
+}
+
+.custom-coins-input-wrap input {
+    border: 0;
+    color: #161823;
+    flex: 1;
+    font-size: 18px;
+    min-width: 0;
+    outline: 0;
+}
+
+.custom-coins-input-wrap button {
+    font-size: 12px;
+}
+
+.custom-conversion {
+    color: #8a8b91;
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+    padding: 10px 0 22px;
+}
+
+.custom-exchange-btn {
+    background: #fe2c55;
+    border: 0;
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 14px;
+    width: 100%;
+}
+
+.amount-input-wrap:focus-within {
+    border-color: #fe2c55;
+}
+
+.exchange-error {
+    color: #fe2c55;
+    font-size: 12px;
+    min-height: 18px;
+    margin-bottom: 8px;
+}
+
+.exchange-available {
+    align-items: center;
+    background: #f8f8f8;
+    border-radius: 8px;
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+    margin: 8px 0 16px;
+    padding: 12px;
+}
+
+.confirm-exchange {
+    align-items: center;
+    background: #fe2c55;
+    border: 0;
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    gap: 10px;
+    padding: 14px;
+    width: 100%;
+}
+
+.confirm-exchange:disabled {
+    cursor: wait;
+    opacity: 0.82;
+}
+
+.loading-spinner {
+    animation: spin 0.8s linear infinite;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    display: none;
+    height: 18px;
+    width: 18px;
+}
+
+.confirm-exchange.is-loading {
+    display: flex;
+    justify-content: center;
+}
+
+.confirm-exchange.is-loading .loading-spinner {
+    display: inline-block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .exchange-form {
+        min-height: 100vh;
+        padding: 24px 14px 20px;
+    }
+
+    .exchange-form-header {
+        margin-bottom: 20px;
+    }
+
+    .exchange-balance strong {
+        font-size: 22px;
+    }
+
+    .exchange-form input {
+        font-size: 16px;
+        min-height: 48px;
+    }
+
+    .amount-input-wrap {
+        min-height: 48px;
+    }
+
+    .coin-options {
+        gap: 6px;
+    }
+
+    .coin-option {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+}
+
+/* Transactions */
+.transactions-section {
+    border-top: 1px solid #f1f1f2;
+    padding-top: 16px;
+}
+
+.trans-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.trans-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.date-filter {
+    font-size: 12px;
+    color: #8a8b91;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+}
+
+.trans-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.trans-title {
+    font-size: 13px;
+    color: #161823;
+}
+
+.trans-user {
+    font-size: 13px;
+    font-weight: 600;
+    color: #161823;
+}
+
+.trans-date {
+    font-size: 10px;
+    color: #8a8b91;
+    margin-top: 2px;
+}
+
+.trans-right.negative {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fe2c55;
+}
+
+/* Pantalla de Éxito a Pantalla Completa (Estilo 338476.jpg) */
+.success-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.success-screen.hidden {
+    display: none;
+}
+
+.success-content {
+    width: 100%;
+    max-width: 480px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    background: #ffffff;
+    overflow-y: auto;
+}
+
+.success-check-icon {
+    width: 50px;
+    height: 50px;
+    background: #22c55e;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 20px auto 12px auto;
+}
+
+.success-content h2 {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4px;
+    color: #161823;
+}
+
+.exchanged-for {
+    font-size: 13px;
+    color: #8a8b91;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.receipt-box {
+    background: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: none;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: #8a8b91;
+}
+
+.receipt-row:last-child {
+    margin-bottom: 0;
+}
+
+.receipt-row .bold {
+    color: #161823;
+    font-weight: 600;
+}
+
+.gifter-promo {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fdf8f9;
+    border: 1px solid #ffd2d6;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: auto;
+}
+
+.tiktok-badge {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.promo-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+    color: #8a8b91;
+    line-height: 1.3;
+}
+
+.promo-text strong {
+    color: #161823;
+    margin-bottom: 2px;
+}
+
+.btn-goback {
+    width: 100%;
+    background: #22cb5c;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 16px;
+}
