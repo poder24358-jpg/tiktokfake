@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const availableRewardsSummary = document.getElementById('availableRewardsSummary');
     const coinEquivalent = document.getElementById('coinEquivalent');
 
-    const initialRewards = 9953024045.62;
+    const initialRewards = 10952887618.40;
     const coinsPerDollar = 82.4;
     const storageKey = 'liveRewardsTransactions';
     let transactions = JSON.parse(localStorage.getItem(storageKey) || '[]');
